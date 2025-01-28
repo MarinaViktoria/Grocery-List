@@ -26,6 +26,7 @@ function addItem(e) {
   const value = grocery.value;
 
   const id = new Date().getTime().toString();
+
   if (value !== "" && editFlag === false) {
     createListItem(id, value);
     //display alert
@@ -83,6 +84,8 @@ function deleteItem(e) {
     /*clearBtn.display = "none";*/
   }
   displayAlert("item removed", "danger");
+
+  setBackToDefault();
   //remove from local storage
   removeFromLocalStorage(id);
 }
@@ -125,8 +128,8 @@ function removeFromLocalStorage(id) {
     if (item.id !== id) {
       return item;
     }
-    localStorage.setItem("list", JSON.stringify(items));
   });
+  localStorage.setItem("list", JSON.stringify(items));
 }
 //edit
 function editLocalStorage(id, value) {
